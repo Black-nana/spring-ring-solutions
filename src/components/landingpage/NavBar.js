@@ -37,6 +37,12 @@ function NavBar() {
                 <a href='#'>Testimonials</a>
                 <a href='#'>Gallery</a>
                 <a href='#'>Book Now</a>
+                {user && (
+                  <>
+                    {user.role === 'admin' && <a href='#'>Admin Dashboard</a>}
+                    {user.role === 'user' && <a href='#'>User Dashboard</a>}
+                  </>
+                )}
               </div>
             </div>
             {/* secondary */}
@@ -72,6 +78,12 @@ function NavBar() {
               <a href='#'>Testimonials</a>
               <a href='#'>Gallery</a>
               <a href='#'>Book Now</a>
+              {user && (
+                  <>
+                    {user.role === 'admin' && <a href='#'>Admin Dashboard</a>}
+                    {user.role === 'user' && <a href='#'>User Dashboard</a>}
+                  </>
+                )}
             </div>
           </div>
         </div>

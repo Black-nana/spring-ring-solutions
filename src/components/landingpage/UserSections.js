@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Button, Dialog, DialogActions, DialogContent,  TextField, Typography } from '@mui/material';
+import { RiLockPasswordFill } from "react-icons/ri";
 import userData from '../../data'; // Import local data mockup
 
-const UserSection = ({ onUserLogin, onUserLogout,user }) => {
+const UserSection = ({ onUserLogin, onUserLogout, user }) => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
 
@@ -29,12 +31,12 @@ const UserSection = ({ onUserLogin, onUserLogout,user }) => {
       }
 
       // Mockup data comparison
-      const user = userData.find(
+      const foundUser = userData.find(
         (userData) => userData.first_name === username && userData.email === password
       );
 
-      if (user) {
-        onUserLogin(user);
+      if (foundUser) {
+        onUserLogin(foundUser);
         setShowModal(false);
         setError('');
       } else {
@@ -61,57 +63,77 @@ const UserSection = ({ onUserLogin, onUserLogout,user }) => {
     <div className='flex items-center gap-6'>
       {user ? (
         <>
-          <span className='text-gray-700 '>{user.first_name}</span>
-          <button onClick={handleSignOut} className='text-gray-700 border-b-2 border-orange-300 cursor-pointer'>
+          <Typography variant="body1" className='text-gray-700 '>
+            {user.first_name}
+          </Typography>
+          <Button onClick={handleSignOut} className='text-gray-700 border-b-2 border-orange-300'>
             Sign Out
-          </button>
+          </Button>
         </>
       ) : (
-        <button onClick={openModal} className='text-gray-700 border-b-2 border-orange-300 cursor-pointer'>
+        <Button onClick={openModal} className='text-gray-700 border-b-2 border-orange-300'>
           Login
-        </button>
+        </Button>
       )}
 
       {/* Modal for Sign In */}
-      {showModal && (
-        <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50'>
-          <div className='bg-white p-8 rounded-lg z-50'>
-            <h2 className='text-2xl font-bold mb-4'>Sign In</h2>
-            <form onSubmit={formik.handleSubmit}>
-              {/* Your form inputs for Sign In */}
-              <label htmlFor='username'>Username:</label>
-              <input
-                type='text'
-                id='username'
-                name='username'
-                value={formik.values.username}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.username && formik.errors.username && (
-                <p className='text-red-500 mt-1'>{formik.errors.username}</p>
-              )}
-              <label htmlFor='password'>Password:</label>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password && (
-                <p className='text-red-500 mt-1'>{formik.errors.password}</p>
-              )}
-              <button type='submit'>Sign In</button>
-              {error && <p className='text-red-500 mt-2'>{error}</p>}
-            </form>
-            <button onClick={closeModal} className='mt-4'>
-              Close
-            </button>
-          </div>
+      <Dialog open={showModal} onClose={closeModal}  sx={{ '& .MuiDialog-paper': { width: '400px' } }}>
+        <div className='m-0 px-4 py-4 text-3xl font-semibold flex items-center gap-2'>SignIn
+        <RiLockPasswordFill className='text-blue-700 text-4xl'/>
         </div>
-      )}
+        <DialogContent>
+          <form onSubmit={formik.handleSubmit} className='grid place-items-center mt-0'>
+            {/* Your form inputs for Sign In */}
+            <TextField
+              label='Username'
+              type='text'
+              id='username'
+              name='username'
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              variant='standard'
+              fullWidth
+              margin='normal'
+            />
+            {formik.touched.username && formik.errors.username && (
+              <Typography variant='body2' color='error'>
+                {formik.errors.username}
+              </Typography>
+            )}
+            <TextField
+              label='Password'
+              type='password'
+              id='password'
+              name='password'
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              variant='standard'
+              fullWidth
+              margin='normal'
+            />
+            {formik.touched.password && formik.errors.password && (
+              <Typography variant='body2' color='error'>
+                {formik.errors.password}
+              </Typography>
+            )}
+            <Button type='submit' variant='contained' color='primary' fullWidth>
+              Sign In
+            </Button>
+            {error && (
+              <Typography variant='body2' color='error' mt={2}>
+                {error}
+              </Typography>
+            )}
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal} color='secondary'>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

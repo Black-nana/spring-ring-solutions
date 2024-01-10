@@ -75,6 +75,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="firstName"
+                  variant="standard"
                   onChange={formik.handleChange}
                   value={formik.values.firstName}
                   error={formik.touched.firstName && Boolean(formik.errors.firstName)}
@@ -88,6 +89,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="lastName"
+                  variant="standard"
                   onChange={formik.handleChange}
                   value={formik.values.lastName}
                   error={formik.touched.lastName && Boolean(formik.errors.lastName)}
@@ -102,6 +104,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="email"
+                  variant="standard"
                   onChange={formik.handleChange}
                   value={formik.values.email}
                   error={formik.touched.email && Boolean(formik.errors.email)}
@@ -119,6 +122,7 @@ const SignUp = () => {
                   label="Password"
                   type="password"
                   id="password"
+                  variant="standard"
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   error={formik.touched.password && Boolean(formik.errors.password)}
@@ -132,6 +136,7 @@ const SignUp = () => {
                   required
                   fullWidth
                   id="contactNumber"
+                  variant="standard"
                   onChange={formik.handleChange}
                   value={formik.values.contactNumber}
                   error={formik.touched.contactNumber && Boolean(formik.errors.contactNumber)}
