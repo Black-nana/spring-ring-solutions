@@ -79,7 +79,7 @@ const UserSection = ({ onUserLogin, onUserLogout, user }) => {
       {/* Modal for Sign In */}
       <Dialog open={showModal} onClose={closeModal}  sx={{ '& .MuiDialog-paper': { width: '400px' } }}>
         <div className='m-0 px-4 py-4 text-3xl font-semibold flex items-center gap-2'>SignIn
-        <RiLockPasswordFill className='text-blue-700 text-4xl'/>
+        <RiLockPasswordFill className='text-blue-600 text-4xl'/>
         </div>
         <DialogContent>
           <form onSubmit={formik.handleSubmit} className='grid place-items-center mt-0'>

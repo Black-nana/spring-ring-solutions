@@ -1,22 +1,27 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Hero from './Hero';
-import ServicesFeatures from './ServicesFeatures';
-import CallToAction from './CallToAction';
-import StatsOverview from './StatsOverview';
-import Footer from './Footer';
+// import NavBar from './NavBar';
+// import Hero from './Hero';
+// import ServicesFeatures from './ServicesFeatures';
+// import CallToAction from './CallToAction';
+// import StatsOverview from './StatsOverview';
+// import Footer from './Footer';
+// import Bookings from '../bookings/Bookings';
+// import LoadingOverlay from '../LoadingAminations/LoadingOverLay';
+
+
 
 const Main = () => {
   return (
     <div className='w-full border-4 grid place-items-center'>
-      <NavBar />
+      {/* <NavBar />
       <Hero />
       <ServicesFeatures />
       <CallToAction />
       <StatsOverview />
-      <Footer />
+      <Footer /> */}
       {/* <Booking/> */}
-      
+      {/* <Bookings/> */}
+      {/* <LoadingOverlay open={true} /> */}
     </div>
   );
 };
